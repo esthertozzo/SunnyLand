@@ -15,9 +15,9 @@ public class Personagem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Nome:\n" + nome + "Pontos:\n" + vidaInicial);
-        rb = GetComponent<Rigidbody2D>();
-        rb.gravityScale = novaGravidade;
+        //Debug.Log("Nome:\n" + nome + "Pontos:\n" + vidaInicial);
+        //rb = GetComponent<Rigidbody2D>();
+        //rb.gravityScale = novaGravidade;
     }
 
     // Update is called once per frame
