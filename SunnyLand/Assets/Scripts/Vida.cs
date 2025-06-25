@@ -1,46 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Vida : MonoBehaviour
 {
-
-    int vidas = 3;
-    private bool foiColetado = false;
     public TMP_Text texto_vidas;
     public ParticleSystem efeito;
-    GameObject inimigo;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private static int vida = 3;
+    private bool foiColetado = false;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    // quando colidir c om o inimigo tirar uma vida
-
-    void OnTriggerEnter2D(Collider2D inimigo)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (foiColetado) return;
-        if (inimigo.CompareTag("Player"))
+        if (vida == 0)
+        {
+            texto_vidas.text = "Game Over";
+        }
+        if (collision.CompareTag("Player"))
         {
             foiColetado = true;
-            vidas = vidas - 1;
-            texto_vidas.text = "Vidas: " + vidas.ToString();
+            vida++;
+            texto_vidas.text = "Vidas: " + vida.ToString();
             Instantiate(efeito, transform.position, Quaternion.identity);
             Destroy(gameObject);
+            if (vida == 5) return;
+        }
+        
+        
 
-        }
-        if(vidas == 0)
-        {
-            Debug.Log("Game Over");
-        }
     }
 }
